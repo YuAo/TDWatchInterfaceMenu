@@ -1,6 +1,6 @@
 # TDWatchInterfaceMenu
 
-Add menu item with action handler block to `WKInterfaceController`
+Add menu item with a block as the action handler to `WKInterfaceController`
 
 ###Usage Example
 
@@ -30,4 +30,4 @@ func clearAllMenuItems()
 ```
 However, these methods require the `WKInterfaceController` object to be the one handles the menu action. You can not specify the target of the action.
 
-`TDWatchInterfaceMenu` provides a way to add menu item with a block as action handler.
+`TDWatchInterfaceMenu` provides a way to add menu item with a block as the action handler.
