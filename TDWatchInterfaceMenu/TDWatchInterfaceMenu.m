@@ -59,9 +59,9 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
         BOOL added =
         class_addMethod(self.interfaceControllerClass,
                         actionSelector,
-                        imp_implementationWithBlock(^(id self){
+                        imp_implementationWithBlock(^(id receiver){
                             if (menuItem.actionHandler) {
-                                menuItem.actionHandler(menuItem);
+                                menuItem.actionHandler(receiver,menuItem);
                             }
                         }),
                         method_getTypeEncoding(class_getInstanceMethod(self.class, @selector(td_watchInterfaceMenuItemAction_placeholder))));

@@ -10,7 +10,7 @@
 
 @interface TDWatchInterfaceMenuItem ()
 
-@property (nonatomic,copy) void (^actionHandler)(TDWatchInterfaceMenuItem *sender);
+@property (nonatomic,copy) TDWatchInterfaceMenuItemActionHandler actionHandler;
 
 @property (nonatomic,copy) void (^actionForAddingMenuItemToInterfaceController)(WKInterfaceController *interfaceController, SEL selector);
 
@@ -27,7 +27,7 @@
     return _identifier;
 }
 
-- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title actionHandler:(void (^)(TDWatchInterfaceMenuItem *))actionHandler {
+- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title actionHandler:(TDWatchInterfaceMenuItemActionHandler)actionHandler {
     if (self = [super init]) {
         self.actionHandler = actionHandler;
         self.actionForAddingMenuItemToInterfaceController = ^(WKInterfaceController *interfaceController, SEL selector) {
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (instancetype)initWithImageNamed:(NSString *)imageName title:(NSString *)title actionHandler:(void (^)(TDWatchInterfaceMenuItem *))actionHandler {
+- (instancetype)initWithImageNamed:(NSString *)imageName title:(NSString *)title actionHandler:(TDWatchInterfaceMenuItemActionHandler)actionHandler {
     if (self = [super init]) {
         self.actionHandler = actionHandler;
         self.actionForAddingMenuItemToInterfaceController = ^(WKInterfaceController *interfaceController, SEL selector) {
@@ -47,7 +47,7 @@
     return self;
 }
 
-- (instancetype)initWithItemIcon:(WKMenuItemIcon)itemIcon title:(NSString *)title actionHandler:(void (^)(TDWatchInterfaceMenuItem *))actionHandler {
+- (instancetype)initWithItemIcon:(WKMenuItemIcon)itemIcon title:(NSString *)title actionHandler:(TDWatchInterfaceMenuItemActionHandler)actionHandler {
     if (self = [super init]) {
         self.actionHandler = actionHandler;
         self.actionForAddingMenuItemToInterfaceController = ^(WKInterfaceController *interfaceController, SEL selector) {
