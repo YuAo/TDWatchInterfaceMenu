@@ -26,7 +26,7 @@ func addMenuItemWithImageNamed(imageName: String, title: String, action: Selecto
 func addMenuItemWithItemIcon(itemIcon: WKMenuItemIcon, title: String, action: Selector)
 func clearAllMenuItems()
 ```
-However, these methods require the `WKInterfaceController` object to be the one handles the menu action. You can not specify the target of the action.
+However, these methods require the `WKInterfaceController` object to be the one that handles the menu action. You cannot specify the target of the action.
 
 `TDWatchInterfaceMenu` provides a way to add a menu item with a block as the action handler. More importantly, it decouples the menu item from the implementation of interface controller, makes it easier to reuse the menu item or, more commonly, the interface controller.
 
