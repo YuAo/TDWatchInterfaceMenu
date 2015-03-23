@@ -8,7 +8,7 @@ class InterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let menuItem = TDWatchInterfaceMenuItem(itemIcon: WKMenuItemIcon.Accept, title: NSLocalizedString("Accept", comment: ""), actionHandler: { (item) -> Void in
+        let menuItem = TDWatchInterfaceMenuItem(itemIcon: WKMenuItemIcon.Accept, title: NSLocalizedString("Accept", comment: ""), actionHandler: { (interfaceController, menuItem) -> Void in
             println("Accepted!")
         })
         
