@@ -1,4 +1,5 @@
 # TDWatchInterfaceMenu
+
 Add menu item with action handler block to `WKInterfaceController`
 
 ###Usage Example
@@ -18,7 +19,7 @@ class InterfaceController: WKInterfaceController {
 }
 ```
 
-###Problem to solve
+###Problem to Solve
 
 `WKInterfaceController` has some methods to add and remove menu items.
 ```
@@ -27,4 +28,6 @@ func addMenuItemWithImageNamed(imageName: String, title: String, action: Selecto
 func addMenuItemWithItemIcon(itemIcon: WKMenuItemIcon, title: String, action: Selector)
 func clearAllMenuItems()
 ```
-However, these methods require the `WKInterfaceController` object to be the one who handles the menu action. You can not specify the target of the action.
+However, these methods require the `WKInterfaceController` object to be the one handles the menu action. You can not specify the target of the action.
+
+`TDWatchInterfaceMenu` provides a way to add menu item with a block as action handler.
