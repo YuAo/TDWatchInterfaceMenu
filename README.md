@@ -1,4 +1,7 @@
 # TDWatchInterfaceMenu
+![CocoaPods Platform](https://img.shields.io/cocoapods/p/TDWatchInterfaceMenu.svg?style=flat-square)
+![CocoaPods Version](https://img.shields.io/cocoapods/v/TDWatchInterfaceMenu.svg?style=flat-square)
+![CocoaPods License](https://img.shields.io/cocoapods/l/TDWatchInterfaceMenu.svg?style=flat-square)
 
 ##Usage
 
