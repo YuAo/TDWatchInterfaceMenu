@@ -16,6 +16,8 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
 
 @interface TDWatchInterfaceMenu ()
 
+@property (nonatomic,copy) NSString *identifier;
+
 @property (nonatomic,weak) WKInterfaceController *interfaceController;
 
 @property (nonatomic) Class interfaceControllerClass;
@@ -29,6 +31,7 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
 - (instancetype)initWithInterfaceController:(WKInterfaceController *)controller {
     if (self = [super init]) {
         NSParameterAssert(controller);
+        self.identifier = NSProcessInfo.processInfo.globallyUniqueString;
         self.interfaceController = controller;
         self.interfaceControllerClass = controller.class;
     }
@@ -44,8 +47,8 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
     return menu;
 }
 
-+ (SEL)actionSelectorForMenuItem:(TDWatchInterfaceMenuItem *)menuItem {
-    return NSSelectorFromString([TDWatchInterfaceMenuItemActionSelectorPrefix stringByAppendingFormat:@"%lx",(unsigned long)menuItem.identifier.hash]);
+- (SEL)actionSelectorForMenuItem:(TDWatchInterfaceMenuItem *)menuItem {
+    return NSSelectorFromString([TDWatchInterfaceMenuItemActionSelectorPrefix stringByAppendingFormat:@"%lx_%lx",(unsigned long)menuItem.identifier.hash,(unsigned long)self.identifier.hash]);
 }
 
 - (void)td_watchInterfaceMenuItemAction_placeholder {
@@ -54,7 +57,7 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
 
 - (void)addMenuItem:(TDWatchInterfaceMenuItem *)menuItem {
     NSParameterAssert(menuItem);
-    SEL actionSelector = [TDWatchInterfaceMenu actionSelectorForMenuItem:menuItem];
+    SEL actionSelector = [self actionSelectorForMenuItem:menuItem];
     if (self.interfaceController && ![self.interfaceController respondsToSelector:actionSelector]) {
         BOOL added =
         class_addMethod(self.interfaceControllerClass,
@@ -74,7 +77,7 @@ static char TDWKInterfaceControllerWatchInterfaceMenuKey;
 
 - (void)clearAllMenuItems {
     for (TDWatchInterfaceMenuItem *menuItem in self.menuItems) {
-        SEL actionSelector = [TDWatchInterfaceMenu actionSelectorForMenuItem:menuItem];
+        SEL actionSelector = [self actionSelectorForMenuItem:menuItem];
         Method method = class_getInstanceMethod(self.interfaceControllerClass, actionSelector);
         imp_removeBlock(method_getImplementation(method));
         method_setImplementation(method, NULL);
